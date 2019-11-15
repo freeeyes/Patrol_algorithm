@@ -5,9 +5,8 @@
 #include "UserRoute.h"
 #include "RouteInfo.h"
 
-int main()
+void Test_distance()
 {
-    /*
     CRoutePoint A(0.0f, 0.0f);
     CRoutePoint B(5.0f, 0.0f);
     CRoutePoint P(1.5f, 3.0f);
@@ -18,8 +17,10 @@ int main()
 
     printf("distance=%f!\n", distance);
     printf("intersection.x=%f,intersection.y=%f!\n", intersection.latitude_, intersection.longitude_);
-    */
+}
 
+void Test_User_step()
+{
     CRouteInfo route_info;
 
     route_info.Set_route_id(1);
@@ -48,11 +49,38 @@ int main()
         printf_s("[main]user walk distance(%d).\n", object_route_info.point_index_);
         printf_s("[main]user walk distance(%f).\n", object_route_info.last_line_disance_);
         printf_s("[main]user walk pos(%f, %f).\n", object_route_info.user_last_point_.latitude_, object_route_info.user_last_point_.longitude_);
+        printf_s("[main]-----------------------\n", object_route_info.point_index_);
     }
     else
     {
         printf_s("[main]user walk error(%s).\n", route_info.Get_calculation_return_error(err).c_str());
     }
+
+    for (int i = 0; i < 10; i++)
+    {
+        curr_user_point.latitude_ = curr_user_point.latitude_ + 3.0f;
+        curr_user_point.longitude_ = 1.0f;
+
+        int err = route_info.Calculation_line(curr_user_point, object_route_info);
+
+        if (err == 0)
+        {
+            printf_s("[main]user walk distance(%d).\n", object_route_info.point_index_);
+            printf_s("[main]user walk distance(%f).\n", object_route_info.last_line_disance_);
+            printf_s("[main]user walk pos(%f, %f).\n", object_route_info.user_last_point_.latitude_, object_route_info.user_last_point_.longitude_);
+            printf_s("[main]-----------------------\n", object_route_info.point_index_);
+        }
+        else
+        {
+            printf_s("[main]user walk error(%s).\n", route_info.Get_calculation_return_error(err).c_str());
+        }
+    }
+}
+
+int main()
+{
+
+    Test_User_step();
 
     getchar();
     return 0;
