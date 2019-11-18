@@ -34,7 +34,7 @@ void CRouteInfo::Add_node(CRoutePoint route_point, int route_width)
         CRoutePoint last_point(last_node.latitude_, last_node.longitude_);
         CRoutePoint curr_point(node.latitude_, node.longitude_);
 
-        node.curr_line_length_ = Point_to_point_distance(last_point, curr_point);
+        node.curr_line_length_ = route_node_list_[Get_node_count() - 1].curr_line_length_ + Point_to_point_distance(last_point, curr_point);
     }
 
     route_node_list_.push_back(node);
@@ -96,15 +96,20 @@ int CRouteInfo::Calculation_line(CRoutePoint user_curr_point, CObjectRouteInfo& 
     CRoutePoint  curr_line_start_point(route_node_list_[min_point_index].latitude_, route_node_list_[min_point_index].longitude_);
     double curr_line_distance = route_node_list_[min_point_index].curr_line_length_ + Point_to_point_distance(curr_line_start_point, min_intersection_point);
 
-    if (curr_line_distance - object_route_info.last_line_disance_ > object_route_info.step_)
+    if (curr_line_distance > object_route_info.last_line_disance_ && curr_line_distance - object_route_info.last_line_disance_ > object_route_info.step_)
     {
         return 4;
     }
 
     //修改对应的数据
-    object_route_info.last_line_disance_ = curr_line_distance;
-    object_route_info.point_index_       = min_point_index;
-    object_route_info.user_last_point_   = min_intersection_point;
+    if (curr_line_distance > object_route_info.last_line_disance_)
+    {
+        object_route_info.last_line_disance_ = curr_line_distance;
+        object_route_info.point_index_ = min_point_index;
+        object_route_info.user_last_point_ = min_intersection_point;
+        object_route_info.last_line_ratio_ = (curr_line_distance / route_node_list_[Get_node_count() - 1].curr_line_length_) * 100.0f;
+    }
+
     return 0;
 }
 

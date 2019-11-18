@@ -49,16 +49,17 @@ public:
 class CObjectRouteInfo
 {
 public:
-    CObjectRouteInfo() : point_index_(unuse_user_point_index), step_(0), direction_(0), last_line_disance_(0.0f)
+    CObjectRouteInfo() : point_index_(unuse_user_point_index), step_(0), direction_(0), last_line_disance_(0.0f), last_line_ratio_(0.0f)
     {
 
     }
 
-    CRoutePoint user_last_point_;
-    int point_index_;
-    int step_;
-    int direction_;
-    double last_line_disance_;
+    CRoutePoint user_last_point_;  //当前映射路线点位置
+    int point_index_;              //最近的一个路线节点ID
+    int step_;                     //当前最大步进
+    int direction_;                //当前方向
+    double last_line_disance_;     //当前已完成路线距离
+    double last_line_ratio_;       //当前已完成路线比率
 };
 
 double Point_to_point_square(CRoutePoint line_target_point, CRoutePoint line_source_point);

@@ -46,10 +46,11 @@ void Test_User_step()
 
     if (err == 0)
     {
-        printf_s("[main]user walk distance(%d).\n", object_route_info.point_index_);
+        printf_s("[main]user walk index(%d).\n", object_route_info.point_index_);
         printf_s("[main]user walk distance(%f).\n", object_route_info.last_line_disance_);
         printf_s("[main]user walk pos(%f, %f).\n", object_route_info.user_last_point_.latitude_, object_route_info.user_last_point_.longitude_);
-        printf_s("[main]-----------------------\n", object_route_info.point_index_);
+        printf_s("[main]user line ratio(%f%%).\n", object_route_info.last_line_ratio_);
+        printf_s("[main]-----------------------\n");
     }
     else
     {
@@ -68,11 +69,13 @@ void Test_User_step()
             printf_s("[main]user walk distance(%d).\n", object_route_info.point_index_);
             printf_s("[main]user walk distance(%f).\n", object_route_info.last_line_disance_);
             printf_s("[main]user walk pos(%f, %f).\n", object_route_info.user_last_point_.latitude_, object_route_info.user_last_point_.longitude_);
+            printf_s("[main]user line ratio(%f%%).\n", object_route_info.last_line_ratio_);
             printf_s("[main]-----------------------\n", object_route_info.point_index_);
         }
         else
         {
             printf_s("[main]user walk error(%s).\n", route_info.Get_calculation_return_error(err).c_str());
+            printf_s("[main]-----------------------\n", object_route_info.point_index_);
         }
     }
 }
