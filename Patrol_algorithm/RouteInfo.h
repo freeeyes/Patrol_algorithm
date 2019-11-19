@@ -20,7 +20,7 @@ public:
 
     bool Get_line_point(int point_index, CRoutePoint& curr_line_point);
 
-    int Calculation_line(CRoutePoint user_curr_point, CObjectRouteInfo& object_route_info);
+    int Calculation_line(CRoutePoint user_curr_point, CObjectRouteInfo* object_route_info);
 
     string Get_calculation_return_error(int err);
 

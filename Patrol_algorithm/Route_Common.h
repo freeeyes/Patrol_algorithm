@@ -6,6 +6,24 @@
 
 const int unuse_user_point_index = -1;
 
+#define PLATFORM_WIN     0
+#define PLATFORM_UNIX    1
+#define PLATFORM_APPLE   2
+
+#if defined(__WIN32__) || defined(WIN32) || defined(_WIN32) || defined(__WIN64__) || defined(WIN64) || defined(_WIN64)
+#  define PSS_PLATFORM PLATFORM_WIN
+#elif defined(__APPLE_CC__)
+#  define PSS_PLATFORM PLATFORM_APPLE
+#else
+#  define PSS_PLATFORM PLATFORM_UNIX
+#endif
+
+#if PSS_PLATFORM == PLATFORM_WIN
+#define PRINTF printf_s
+#else
+#define PRINTF printf
+#endif
+
 //道路节点信息
 class CRouteNode
 {
@@ -41,8 +59,28 @@ public:
         longitude_ = longitude;
     }
 
+    void clear()
+    {
+        latitude_  = 0.0f;
+        longitude_ = 0.0f;
+    }
+
     double latitude_;
     double longitude_;
+};
+
+//用户节点信息
+class CUserRoutePointInfo
+{
+public:
+    CUserRoutePointInfo() : curr_point_distance_(0.0f), curr_route_ratio_(0.0f)
+    {
+
+    }
+
+    CRoutePoint curr_route_point_;          //当前在道路上的点信息
+    double      curr_point_distance_;       //当前在已知道路上已行走里程
+    double      curr_route_ratio_;          //当前完成路线比率
 };
 
 //线路计算中需要的对象信息
@@ -54,9 +92,18 @@ public:
 
     }
 
+    void Clear()
+    {
+        user_last_point_.clear();
+        point_index_       = unuse_user_point_index;
+        direction_         = 0;
+        last_line_disance_ = 0.0f;
+        last_line_ratio_   = 0.0f;
+    }
+
     CRoutePoint user_last_point_;  //当前映射路线点位置
     int point_index_;              //最近的一个路线节点ID
-    int step_;                     //当前最大步进
+    double step_;                  //当前最大步进
     int direction_;                //当前方向
     double last_line_disance_;     //当前已完成路线距离
     double last_line_ratio_;       //当前已完成路线比率
