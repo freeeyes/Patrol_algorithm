@@ -9,6 +9,10 @@ using namespace std;
 
 const int unuse_user_point_index = -1;
 
+const double pi = 3.1415926535897932384626433832795;
+const double EARTH_RADIUS = 6378.137; //地球半径 KM
+
+
 //道路节点信息
 class CRouteNode
 {
@@ -93,6 +97,8 @@ public:
     double last_line_disance_;     //当前已完成路线距离
     double last_line_ratio_;       //当前已完成路线比率
 };
+
+double rad(double d);
 
 double Point_to_point_square(CRoutePoint line_target_point, CRoutePoint line_source_point);
 

@@ -8,16 +8,25 @@
 
 void Test_distance()
 {
-    CRoutePoint A(0.0f, 0.0f);
-    CRoutePoint B(5.0f, 0.0f);
-    CRoutePoint P(1.5f, 3.0f);
+    CRoutePoint A(39.9080075f, 116.394729f);
+    CRoutePoint B(39.9080285f, 116.394729f);
+    double distance = Point_to_point_distance(A, B);
+
+    cout << "[Test_distance]distance=" << distance << endl;
+}
+
+void Test_user_distance()
+{
+    CRoutePoint A(39.9080075f, 116.394729f);
+    CRoutePoint B(39.9080285f, 116.394729f);
+    CRoutePoint P(39.9080185f, 116.364729f);
 
     CRoutePoint intersection;
 
     double distance = Point_to_line_distance(A, B, P, intersection);
 
-    cout << "[Test_distance]distance=" << distance << endl;
-    cout << "[Test_distance]intersection.x=" << intersection.latitude_ << ",intersection.y=" << intersection.longitude_ << endl;
+    cout << "[Test_user_distance]distance=" << distance << endl;
+    cout << "[Test_user_distance]intersection.x=" << intersection.latitude_ << ",intersection.y=" << intersection.longitude_ << endl;
 }
 
 void Test_Route_step()
@@ -121,9 +130,10 @@ void Test_User_step()
 
 int main()
 {
-
+    Test_distance();
+    Test_user_distance();
     //Test_Route_step();
-    Test_User_step();
+    //Test_User_step();
 
     getchar();
     return 0;

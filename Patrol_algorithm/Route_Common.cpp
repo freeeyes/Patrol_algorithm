@@ -1,5 +1,10 @@
 #include "Route_Common.h"
 
+double rad(double d)
+{
+    return d * pi / 180.0;
+}
+
 double Point_to_point_square(CRoutePoint line_target_point, CRoutePoint line_source_point)
 {
     return (line_target_point.latitude_ - line_source_point.latitude_)*(line_target_point.latitude_ - line_source_point.latitude_) + (line_target_point.longitude_ - line_source_point.longitude_)*(line_target_point.longitude_ - line_source_point.longitude_);
@@ -7,7 +12,16 @@ double Point_to_point_square(CRoutePoint line_target_point, CRoutePoint line_sou
 
 double Point_to_point_distance(CRoutePoint line_target_point, CRoutePoint line_source_point)
 {
-    return sqrt(Point_to_point_square(line_target_point, line_source_point));
+    double a;
+    double b;
+    double radLat1 = rad(line_target_point.latitude_);
+    double radLat2 = rad(line_source_point.latitude_);
+    a = radLat1 - radLat2;
+    b = rad(line_target_point.longitude_) - rad(line_source_point.longitude_);
+    double s = 2 * asin(sqrt(pow(sin(a / 2), 2) + cos(radLat1)*cos(radLat2)*pow(sin(b / 2), 2)));
+    s = s * EARTH_RADIUS;
+    s = s * 1000;
+    return s;
 }
 
 CRoutePoint Point_to_line_intersection(CRoutePoint line_start_point, CRoutePoint line_end_point, CRoutePoint target_point)
@@ -45,8 +59,7 @@ double Point_to_line_distance(CRoutePoint line_start_point, CRoutePoint line_end
     else                           //第三种情况, 返回PC的长度
     {
         intersection_point = Point_to_line_intersection(line_start_point, line_end_point, target_point);
-        double AC = r * Point_to_point_distance(line_start_point, line_end_point);  //先求AC的长度,(AC=r*|AB|)
-        return sqrt(Point_to_point_square(line_start_point, target_point) - AC * AC); //再勾股定理返回PC的长度
+        return Point_to_point_distance(line_start_point, intersection_point);
     }
 }
 
