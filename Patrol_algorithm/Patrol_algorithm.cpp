@@ -16,8 +16,8 @@ void Test_distance()
 
     double distance = Point_to_line_distance(A, B, P, intersection);
 
-    PRINTF("[Test_distance]distance=%f!\n", distance);
-    PRINTF("[Test_distance]intersection.x=%f,intersection.y=%f!\n", intersection.latitude_, intersection.longitude_);
+    cout << "[Test_distance]distance=" << distance << endl;
+    cout << "[Test_distance]intersection.x=" << intersection.latitude_ << ",intersection.y=" << intersection.longitude_ << endl;
 }
 
 void Test_Route_step()
@@ -47,15 +47,15 @@ void Test_Route_step()
 
     if (err == 0)
     {
-        PRINTF("[Test_Route_step]user walk index(%d).\n", object_route_info.point_index_);
-        PRINTF("[Test_Route_step]user walk distance(%f).\n", object_route_info.last_line_disance_);
-        PRINTF("[Test_Route_step]user walk pos(%f, %f).\n", object_route_info.user_last_point_.latitude_, object_route_info.user_last_point_.longitude_);
-        PRINTF("[Test_Route_step]user line ratio(%f%%).\n", object_route_info.last_line_ratio_);
-        PRINTF("[Test_Route_step]-----------------------\n");
+        cout << "[Test_Route_step]user walk index(" << object_route_info.point_index_ << ")" << endl;
+        cout << "[Test_Route_step]user walk distance(" << object_route_info.last_line_disance_ << ")" << endl;
+        cout << "[Test_Route_step]user walk pos(" << object_route_info.user_last_point_.latitude_ << "," << object_route_info.user_last_point_.longitude_ << ")" << endl;
+        cout << "[Test_Route_step]user line ratio(" << object_route_info.last_line_ratio_ << ")" << endl;
+        cout << "[Test_Route_step]-----------------------\n" << endl;
     }
     else
     {
-        PRINTF("[main]user walk error(%s).\n", route_info.Get_calculation_return_error(err).c_str());
+        cout << "[main]user walk error(" << route_info.Get_calculation_return_error(err).c_str() << ")" << endl;
     }
 
     for (int i = 0; i < 10; i++)
@@ -67,16 +67,16 @@ void Test_Route_step()
 
         if (err == 0)
         {
-            PRINTF("[Test_Route_step]user walk distance(%d).\n", object_route_info.point_index_);
-            PRINTF("[Test_Route_step]user walk distance(%f).\n", object_route_info.last_line_disance_);
-            PRINTF("[Test_Route_step]user walk pos(%f, %f).\n", object_route_info.user_last_point_.latitude_, object_route_info.user_last_point_.longitude_);
-            PRINTF("[Test_Route_step]user line ratio(%f%%).\n", object_route_info.last_line_ratio_);
-            PRINTF("[Test_Route_step]-----------------------\n");
+            cout << "[Test_Route_step]user walk index(" << object_route_info.point_index_ << ")" << endl;
+            cout << "[Test_Route_step]user walk distance(" << object_route_info.last_line_disance_ << ")" << endl;
+            cout << "[Test_Route_step]user walk pos(" << object_route_info.user_last_point_.latitude_ << "," << object_route_info.user_last_point_.longitude_ << ")" << endl;
+            cout << "[Test_Route_step]user line ratio(" << object_route_info.last_line_ratio_ << ")" << endl;
+            cout << "[Test_Route_step]-----------------------\n" << endl;
         }
         else
         {
-            PRINTF("[Test_Route_step]user walk error(%s).\n", route_info.Get_calculation_return_error(err).c_str());
-            PRINTF("[Test_Route_step]-----------------------\n");
+            cout << "[Test_Route_step]user walk error(" << route_info.Get_calculation_return_error(err).c_str() << ")" << endl;
+            cout << "[Test_Route_step]-----------------------\n" << endl;
         }
     }
 }
@@ -108,8 +108,8 @@ void Test_User_step()
         }
         else
         {
-            PRINTF("[Test_Route_step]user walk error(%s).\n", route_info.Get_calculation_return_error(err).c_str());
-            PRINTF("[Test_Route_step]-----------------------\n");
+            cout << "[Test_User_step]user walk error(" << route_info.Get_calculation_return_error(err).c_str() << ")" << endl;
+            cout << "[Test_User_step]-----------------------\n" << endl;
         }
 
         curr_user_point.latitude_ += 3.0f;

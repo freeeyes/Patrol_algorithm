@@ -45,15 +45,19 @@ void CUserRoute::Display()
     {
         if (i == 0)
         {
-            PRINTF("(%f, %f)", user_curr_route_point_list_[i].curr_route_point_.latitude_, user_curr_route_point_list_[i].curr_route_point_.longitude_);
+            cout << "(" << user_curr_route_point_list_[i].curr_route_point_.latitude_
+                 << "," << user_curr_route_point_list_[i].curr_route_point_.longitude_
+                 << ")<" << user_curr_route_point_list_[i].curr_route_ratio_ << "%>";
         }
         else
         {
-            PRINTF("-->(%f, %f)", user_curr_route_point_list_[i].curr_route_point_.latitude_, user_curr_route_point_list_[i].curr_route_point_.longitude_);
+            cout << "-->(" << user_curr_route_point_list_[i].curr_route_point_.latitude_
+                 << "," << user_curr_route_point_list_[i].curr_route_point_.longitude_
+                 << ")<" << user_curr_route_point_list_[i].curr_route_ratio_ << "%>";
         }
     }
 
-    PRINTF("\n");
+    cout << endl;
 }
 
 void CUserRoute::Add_route_point_list(CRoutePoint curr_route_point, double curr_point_distance, double curr_route_ratio)

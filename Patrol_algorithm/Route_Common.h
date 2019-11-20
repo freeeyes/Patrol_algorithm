@@ -3,26 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <cmath>
+#include <iostream>
+
+using namespace std;
 
 const int unuse_user_point_index = -1;
-
-#define PLATFORM_WIN     0
-#define PLATFORM_UNIX    1
-#define PLATFORM_APPLE   2
-
-#if defined(__WIN32__) || defined(WIN32) || defined(_WIN32) || defined(__WIN64__) || defined(WIN64) || defined(_WIN64)
-#  define PSS_PLATFORM PLATFORM_WIN
-#elif defined(__APPLE_CC__)
-#  define PSS_PLATFORM PLATFORM_APPLE
-#else
-#  define PSS_PLATFORM PLATFORM_UNIX
-#endif
-
-#if PSS_PLATFORM == PLATFORM_WIN
-#define PRINTF printf_s
-#else
-#define PRINTF printf
-#endif
 
 //道路节点信息
 class CRouteNode
