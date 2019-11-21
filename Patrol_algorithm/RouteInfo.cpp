@@ -19,7 +19,7 @@ int CRouteInfo::Get_node_count()
     return route_node_count_;
 }
 
-void CRouteInfo::Add_node(CRoutePoint route_point, int route_width)
+void CRouteInfo::Add_node(CRoutePoint route_point, double route_width)
 {
     CRouteNode node;
 
@@ -58,6 +58,11 @@ int CRouteInfo::Calculation_line(CRoutePoint user_curr_point, CObjectRouteInfo* 
     if (route_node_count_ < 2)
     {
         return 1;
+    }
+
+    if (object_route_info->last_line_ratio_ == 100.0f)
+    {
+        return 5;
     }
 
     if (object_route_info->point_index_ == unuse_user_point_index)
@@ -135,6 +140,10 @@ std::string CRouteInfo::Get_calculation_return_error(int err)
     {
         return "more than the step width";
     }
+    else if(5 == err)
+    {
+        return "route is finished";
+    }
     else
     {
         return "unknow";
@@ -164,6 +173,8 @@ void CRouteInfo::Get_min_distance(int point_index, char direction, CRoutePoint u
             {
                 min_point_index = point_index;
                 min_distance = Point_to_line_distance(line_start_point, line_end_point, user_curr_point, min_intersection_point);
+
+                //cout << "[Get_min_distance]min_distance(" << i << ")=" << min_distance << endl;
             }
             else
             {
@@ -171,6 +182,9 @@ void CRouteInfo::Get_min_distance(int point_index, char direction, CRoutePoint u
                 CRoutePoint curr_intersection_point;
 
                 curr_distance = Point_to_line_distance(line_start_point, line_end_point, user_curr_point, curr_intersection_point);
+
+                //cout << "[Get_min_distance]curr_distance(" << i << ")=" << curr_distance << endl;
+                //cout << "[Get_min_distance]min_distance=" << min_distance << endl;
 
                 if (curr_distance < min_distance)
                 {

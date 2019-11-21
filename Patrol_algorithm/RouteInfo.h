@@ -16,7 +16,7 @@ public:
 
     int Get_node_count();
 
-    void Add_node(CRoutePoint route_point, int route_width);
+    void Add_node(CRoutePoint route_point, double route_width);
 
     bool Get_line_point(int point_index, CRoutePoint& curr_line_point);
 
