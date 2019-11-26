@@ -3,11 +3,11 @@
 Support longitude and latitude route determination, set the route, and automatically attach to the existing route according to the points uploaded by the user's actual walking, and get the percentage of route completion.
 Used for patrol trip statistics.
   
-##install:  
+## install:  
 (1) Use VS2017 under windows.    
 (2) use ./configure;make under linux.     
   
-##example:    
+## example:    
 
 ```C  
 void Test_User_step()
@@ -49,7 +49,7 @@ void Test_User_step()
 }
 ```  
 
-##output:  
+## output:  
 ```  
 [Test_User_step]user walk error(route is finished)
 [Test_User_step]-----------------------
