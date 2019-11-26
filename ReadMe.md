@@ -8,8 +8,9 @@ Used for patrol trip statistics.
 (1) Use VS2017 under windows.  
 (2) use ./configure;make under linux.   
 
-##example：
-···C  
+##example：  
+
+```C  
 void Test_User_step()
 {
     CRouteInfo route_info;
@@ -47,10 +48,10 @@ void Test_User_step()
     user_route.Display();
 
 }
-···  
+```  
 
-##output:
-···   
+##output:  
+```  
 [Test_User_step]user walk error(route is finished)
 [Test_User_step]-----------------------
 
@@ -58,4 +59,4 @@ void Test_User_step()
 [Test_User_step]-----------------------
 
 (0,0)<0%>-->(39.908,116.395)<14.5636%>-->(39.908,116.395)<29.1271%>-->(39.908,116.395)<43.6907%>-->(39.9081,116.395)<72.2222%>-->(39.9081,116.395)<72.8178%>-->(39.9081,116.395)<87.3813%>-->(39.9081,116.395)<100%>
-···
+```  
