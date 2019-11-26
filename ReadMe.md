@@ -5,7 +5,7 @@ Used for patrol trip statistics.
   
 ## install:  
 (1) Use VS2017 under windows.    
-(2) use ./configure;make under linux.     
+(2) use ./configure && make under linux.     
   
 ## example:    
 
