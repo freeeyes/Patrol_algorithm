@@ -1,6 +1,6 @@
 #include "RouteInfo.h"
 
-CRouteInfo::CRouteInfo() : route_id_(0), route_node_count_(0)
+CRouteInfo::CRouteInfo() : route_id_(0), route_node_count_(0), route_length_(0.0f)
 {
 }
 
@@ -38,6 +38,7 @@ void CRouteInfo::Add_node(CRoutePoint route_point, double route_width)
     }
 
     route_node_list_.push_back(node);
+    route_length_ = node.curr_line_length_;
     route_node_count_++;
 }
 
@@ -99,7 +100,18 @@ int CRouteInfo::Calculation_line(CRoutePoint user_curr_point, CObjectRouteInfo* 
 
     //计算是否超过最大步长，超过了属于无效点
     CRoutePoint  curr_line_start_point(route_node_list_[min_point_index].latitude_, route_node_list_[min_point_index].longitude_);
-    double curr_line_distance = route_node_list_[min_point_index].curr_line_length_ + Point_to_point_distance(curr_line_start_point, min_intersection_point);
+    double curr_line_distance = 0.0f;
+
+    if (0 == object_route_info->direction_)
+    {
+        curr_line_distance = route_node_list_[min_point_index].curr_line_length_ + Point_to_point_distance(curr_line_start_point, min_intersection_point);
+    }
+    else
+    {
+        //反向计算距离
+        curr_line_distance = route_node_list_[min_point_index].curr_line_length_ - Point_to_point_distance(curr_line_start_point, min_intersection_point);
+        curr_line_distance = route_length_ - curr_line_distance;
+    }
 
     if (curr_line_distance > object_route_info->last_line_disance_ && curr_line_distance - object_route_info->last_line_disance_ > object_route_info->step_)
     {
@@ -107,12 +119,12 @@ int CRouteInfo::Calculation_line(CRoutePoint user_curr_point, CObjectRouteInfo* 
     }
 
     //修改对应的数据
-    if (curr_line_distance > object_route_info->last_line_disance_)
+    if (curr_line_distance >= object_route_info->last_line_disance_)
     {
         object_route_info->last_line_disance_ = curr_line_distance;
         object_route_info->point_index_ = min_point_index;
         object_route_info->user_last_point_ = min_intersection_point;
-        object_route_info->last_line_ratio_ = (curr_line_distance / route_node_list_[Get_node_count() - 1].curr_line_length_) * 100.0f;
+        object_route_info->last_line_ratio_ = (curr_line_distance / route_length_) * 100.0f;
     }
 
     return 0;

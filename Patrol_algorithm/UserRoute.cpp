@@ -1,15 +1,15 @@
 #include "UserRoute.h"
 
-CUserRoute::CUserRoute(string user_name) : route_id_(0), route_direction_(0), user_curr_route_point_count_(0)
+CUserRoute::CUserRoute(string user_name) : route_id_(0), user_curr_route_point_count_(0)
 {
     user_name_ = user_name;
 }
 
 void CUserRoute::Init(double step, int route_id, char route_direction)
 {
-    route_id_                = route_id;
-    route_direction_         = route_direction;
-    object_route_info_.step_ = step;
+    route_id_                     = route_id;
+    object_route_info_.direction_ = route_direction;
+    object_route_info_.step_      = step;
 }
 
 CObjectRouteInfo* CUserRoute::Get_object_route_info()

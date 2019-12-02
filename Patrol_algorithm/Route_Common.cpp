@@ -2,7 +2,7 @@
 
 double rad(double d)
 {
-    return d * pi / 180.0;
+    return d * pi / 180.0f;
 }
 
 double Point_to_point_square(CRoutePoint line_target_point, CRoutePoint line_source_point)

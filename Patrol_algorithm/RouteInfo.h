@@ -29,7 +29,8 @@ private:
 
 private:
     vector<CRouteNode> route_node_list_;
-    int route_id_;
-    int route_node_count_;
+    int    route_id_;
+    int    route_node_count_;
+    double  route_length_;
 };
 

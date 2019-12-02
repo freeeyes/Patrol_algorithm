@@ -9,8 +9,8 @@ using namespace std;
 
 const int unuse_user_point_index = -1;
 
-const double pi = 3.1415926535897932384626433832795;
-const double EARTH_RADIUS = 6378.137; //地球半径 KM
+const double pi = 3.1415927f;
+const double EARTH_RADIUS = 6378.137f; //地球半径 KM
 
 
 //道路节点信息
@@ -38,7 +38,7 @@ public:
 class CRoutePoint
 {
 public:
-    CRoutePoint() : latitude_(0.0f), longitude_(0.0f)
+    CRoutePoint() : latitude_(0.0), longitude_(0.0)
     {
     }
 
