@@ -9,8 +9,8 @@ using namespace std;
 
 const int unuse_user_point_index = -1;
 
-const double pi = 3.1415927f;
-const double EARTH_RADIUS = 6378.137f; //地球半径 KM
+const double pi = 3.14159265358979;
+const double EARTH_RADIUS = 6378.137; //地球半径 KM
 
 
 //道路节点信息
