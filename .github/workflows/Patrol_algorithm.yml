@@ -10,7 +10,8 @@ jobs:
       - uses: actions/checkout@v1
       - name: make file
         run: |
-          cd ./Patrol_algorithm
+          cd ./Patrol_algorithm;
           ls;
+          ./configure;
           make;
           ./Patrol_algorithm;
