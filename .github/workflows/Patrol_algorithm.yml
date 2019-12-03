@@ -14,7 +14,6 @@ jobs:
           ls -l configure;
           chmod 775 configure;
           ./configure;
-          cat Makefile
           make;
           ./Patrol_algorithm;
          
