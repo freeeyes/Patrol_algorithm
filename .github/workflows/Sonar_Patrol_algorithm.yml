@@ -1,0 +1,24 @@
+name: sonar_Patrol_algorithm
+on: [push]
+
+jobs:
+    sonarCloudTrigger:
+        name: SonarCloud Trigger
+        runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Patrol
+          uses: sonarsource/sonarcloud-github-action@master
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}         
+        run: |
+          cd ./Patrol_algorithm;
+          ls -l configure;
+          chmod 775 configure;
+          ./configure;
+          make;
+          ./Patrol_algorithm;
+          sonar-scanner -X;
+          

@@ -16,3 +16,4 @@ jobs:
           ./configure;
           make;
           ./Patrol_algorithm;
+         
