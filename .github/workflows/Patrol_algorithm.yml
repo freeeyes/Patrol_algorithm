@@ -1,0 +1,15 @@
+name: Patrol_algorithm
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: make file
+        run: |
+          cd ./Patrol_algorithm/Patrol_algorithm
+          make;
+          ./Patrol_algorithm;
