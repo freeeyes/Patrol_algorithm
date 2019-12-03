@@ -11,5 +11,6 @@ jobs:
       - name: make file
         run: |
           cd ./Patrol_algorithm
+          ls;
           make;
           ./Patrol_algorithm;
