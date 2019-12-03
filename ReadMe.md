@@ -1,4 +1,5 @@
 # Route patrol algorithm
+[![Build Status](https://github.com/freeeyes/Patrol_algorithm/workflows/Patrol_algorithm/badge.svg?branch=master)](https://actions-badge.atrox.dev/freeeyes/Patrol_algorithm/goto?ref=master)
 
 Support longitude and latitude route determination, set the route, and automatically attach to the existing route according to the points uploaded by the user's actual walking, and get the percentage of route completion.
 Used for patrol trip statistics.
