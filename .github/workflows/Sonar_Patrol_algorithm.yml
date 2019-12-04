@@ -7,7 +7,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: make and run
+      - name: make Patrol and run
         run: |
           cd ./Patrol_algorithm;
           ls -l configure;
