@@ -11,9 +11,9 @@ jobs:
       - name: make file
         run: |
           cd ./Patrol_algorithm;
+          autoreconf -ivf
           ls -l configure;
           chmod 775 configure;
           ./configure;
           make;
           ./Patrol_algorithm;
-         

@@ -10,6 +10,7 @@ jobs:
       - name: make Patrol and run
         run: |
           cd ./Patrol_algorithm;
+          autoreconf -ivf
           ls -l configure;
           chmod 775 configure;
           ./configure;
