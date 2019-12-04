@@ -7,13 +7,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: Install C++ build wrapper
-        run: |
-          wget https://binaries.sonarsource.com/CommercialDistribution/sonar-cpp-plugin/build-wrapper-3.11.zip
-          unzip build-wrapper-3.11.zip
-          cd build-wrapper-3.11
-          cd linux-x86-64
-          ls
       - name: make Patrol and run
         run: |
           cd ./Patrol_algorithm;
