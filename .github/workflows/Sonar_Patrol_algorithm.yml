@@ -16,7 +16,6 @@ jobs:
           ./configure;
           make;
           ./Patrol_algorithm;
-          sonar-scanner -X
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
